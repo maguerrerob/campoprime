@@ -16,13 +16,17 @@ export class LoginComponent {
 
   constructor(private router: Router,
     private loginService: PeticionesService,
-    private tokenService: PeticionesService
+    // private tokenService: PeticionesService
   ) { }
 
   loginFormulario(){
-    const user = {usuario:this.nombre, pass:this.password}
+    const user = {usuario:this.nombre, pass:this.password};
     this.loginService.loginUsuario(user).subscribe((data) =>{
-      this.tokenService.setToken(data.access_token);
+      // Forma 1
+      sessionStorage.setItem('token', data.access_token);
+      sessionStorage.setItem('token', data.access_token)
+      // Forma 2
+      // this.tokenService.setToken(data.access_token);
       this.router.navigate(['/home']);
     }, error => {
       this.errorMensaje = "Usuario o contraseña inválidos. Inténtelo de nuevo";

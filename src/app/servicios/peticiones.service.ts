@@ -2,20 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs';
-import { CookieService } from "ngx-cookie-service";
+// import { CookieService } from "ngx-cookie-service";
 
-const baseUrl = "http://127.0.0.1:8000"
+const baseUrl = "http://127.0.0.1:8000/api/v1"
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class PeticionesService {
+  private url_crear_token =  'http://127.0.0.1:8000/oauth2/token/';
+  private url_obtener_token = baseUrl + '/usuario/token/';
+  private url_registrar_user = baseUrl + '/registrar/usuario/';
 
-  private url_crear_token = 'http://127.0.0.1:8000/oauth2/token/';
-  private url_obtener_token = 'http://127.0.0.1:8000/api/v1/usuario/token/';
-
-  constructor(private http: HttpClient, private cookies: CookieService) { }
+  constructor(private http: HttpClient) { }
 
   loginUsuario(datosLogin: any): Observable<any> {
     const datosCrearToken = new HttpParams()
@@ -23,7 +23,7 @@ export class PeticionesService {
     .set('username', datosLogin['usuario'])
     .set('password', datosLogin['pass'])
     .set('client_id', 'client_id')
-    .set('secret_id', '1234Probando.');
+    .set('client_secret', '1234Probando.');
 
     const cabecera = {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -32,28 +32,36 @@ export class PeticionesService {
     return this.http.post<any>(this.url_crear_token,datosCrearToken.toString(), {headers: cabecera})
     .pipe(
       catchError(error => {
-        throw error
+        throw error;
       })
     );
   }
 
   // Para configurar token en cookies
-  setToken(token:string){
-    this.cookies.set("token", token);
-  }
+  // setToken(token:string){
+  //   this.cookies.set("token", token);
+  // }
 
-  // Para obtener token en cookies
-  getToken(){
-    return this.cookies.get("token");
-  }
+  // // Para obtener token en cookies
+  // getToken(){
+  //   return this.cookies.get("token");
+  // }
 
-  getUserLogged(): Observable<any>{
-    const token = this.getToken();
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + token
-    });
-    return this.http.get<any>(`${this.url_obtener_token}`+`${token}`, { headers })
-    .pipe(
+  // getUserLogged(): Observable<any>{
+  //   const token = this.getToken();
+  //   const headers = new HttpHeaders({
+  //     'Authorization': 'Bearer ' + token
+  //   });
+  //   return this.http.get<any>(`${this.url_obtener_token}`+`${token}`, { headers })
+  //   .pipe(
+  //     catchError(error => {
+  //       throw error;
+  //     })
+  //   );
+  // }
+
+  registroClienteService(dataSignUp: any): Observable<any>{
+    return this.http.post<any>(this.url_registrar_user, dataSignUp).pipe(
       catchError(error => {
         throw error;
       })

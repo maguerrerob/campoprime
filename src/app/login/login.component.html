@@ -11,7 +11,9 @@
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
 
-                <form>
+                <form
+                  (ngSubmit)="loginFormulario()"
+                  #loginForm="ngForm">
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                     <span class="h1 fw-bold mb-0">Logo</span>
@@ -20,21 +22,43 @@
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Iniciar sesión en su cuenta</h5>
 
                   <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="email" id="form2Example17" class="form-control form-control-lg" [(ngModel)]="nombre" required/>
+                    <input type="email" id="form2Example17" class="form-control form-control-lg" name="nombre" [(ngModel)]="nombre" required/>
                     <label class="form-label" for="form2Example17">Usuario</label>
+                  </div>
+                  <div
+                    *ngIf="
+                      loginForm.controls['nombre'].invalid &&
+                      (loginForm.controls['nombre'].dirty ||
+                        loginForm.controls['nombre'].touched)
+                    "
+                    class="alert alert-danger">
+                    El nombre de usuario es requerido.
                   </div>
 
                   <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="password" id="form2Example27" class="form-control form-control-lg" />
+                    <input type="password" id="form2Example27" class="form-control form-control-lg" name="password" [(ngModel)]="password" required/>
                     <label class="form-label" for="form2Example27">Contraseña</label>
                   </div>
-
+                  <div
+                    *ngIf="
+                      loginForm.controls['password'].invalid &&
+                      (loginForm.controls['password'].dirty ||
+                      loginForm.controls['password'].touched)
+                    " class="alert alert-danger">
+                    La contraseña es requerida
+                  </div>
+                  <div 
+                    *ngIf="errorMensaje" class="alert alert-danger">
+                    Lo siento, usuario no registrado
+                  </div>
                   <div class="pt-1 mb-4">
-                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-lg btn-block gradient-custom-4 text-black" type="button">Acceso</button>
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-lg btn-block gradient-custom-4 text-black" type="submit"
+                      [disabled]="!loginForm.valid"
+                    >Acceso</button>
                   </div>
 
                   <a class="small text-muted" href="#!">¿Has olvidado tu contraseña?</a>
-                  <p class="mb-5 pb-lg-2" style="color: #393f81;">¿No tienes cuenta? <a routerLink="/registro"
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;">¿No tienes cuenta? <a routerLink="/registro-cliente"
                       style="color: #393f81;">Regístrese aquí</a></p>
                   <a href="#!" class="small text-muted">Condiciones de uso.</a>
                   <a href="#!" class="small text-muted">Política de privacidad</a>
