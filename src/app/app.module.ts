@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegistroClienteComponent } from './registro-cliente/registro-cliente.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { RegistroClienteComponent } from './registro-cliente/registro-cliente.co
     LoginComponent,
     HomeComponent,
     RegistroClienteComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
