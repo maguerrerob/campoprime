@@ -47,20 +47,20 @@ export class PeticionesService {
   //   return this.cookies.get("token");
   // }
 
-  // getUserLogged(): Observable<any>{
-  //   const token = this.getToken();
-  //   const headers = new HttpHeaders({
-  //     'Authorization': 'Bearer ' + token
-  //   });
-  //   return this.http.get<any>(`${this.url_obtener_token}`+`${token}`, { headers })
-  //   .pipe(
-  //     catchError(error => {
-  //       throw error;
-  //     })
-  //   );
-  // }
+  
+  getUserLogged(token: any): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + token
+    });
+    return this.http.get<any>(`${this.url_obtener_token}`+`${token}`, { headers })
+    .pipe(
+      catchError(error => {
+        throw error;
+      })
+    );
+  }
 
-  registroClienteService(dataSignUp: any): Observable<any>{
+  registroService(dataSignUp: any): Observable<any>{
     return this.http.post<any>(this.url_registrar_user, dataSignUp).pipe(
       catchError(error => {
         throw error;

@@ -28,7 +28,7 @@ export class RegistroClienteComponent {
       rol: "2",
       telefono: this.telefono,
     };
-    this.registroCliente.registroClienteService(dataSignUp).subscribe(
+    this.registroCliente.registroService(dataSignUp).subscribe(
       response => {
         this.router.navigate(['/home']);
       },

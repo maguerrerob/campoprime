@@ -8,8 +8,13 @@
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
                 alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
             </div>
-            <div class="col-md-6 col-lg-7 d-flex align-items-center">
-              <div class="card-body p-4 p-lg-5 text-black">
+            
+            <div class="col-md-6 col-lg-7 d-flex">
+              
+              <div class="card-body p-4 p-lg-5 text-black d-flex flex-column">
+                <div class="ml-auto">
+                  hopa
+                </div>
 
                 <form
                   (ngSubmit)="loginFormulario()"
@@ -49,7 +54,7 @@
                   </div>
                   <div 
                     *ngIf="errorMensaje" class="alert alert-danger">
-                    Lo siento, usuario no registrado
+                    {{ errorMensaje }}
                   </div>
                   <div class="pt-1 mb-4">
                     <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-lg btn-block gradient-custom-4 text-black" type="submit"
@@ -58,8 +63,12 @@
                   </div>
 
                   <a class="small text-muted" href="#!">¿Has olvidado tu contraseña?</a>
-                  <p class="mb-5 pb-lg-2" style="color: #393f81;">¿No tienes cuenta? <a routerLink="/registro-cliente"
-                      style="color: #393f81;">Regístrese aquí</a></p>
+                  <p class="mb-5 pb-lg-2" >¿No tienes cuenta? <a routerLink="/registro-cliente"
+                      style="color: #393f81;">Regístrese aquí</a>
+                  </p>
+                  <p>
+                    <a style="color: #393f81;" routerLink="/registro-duenyo">¿Eres un club nuevo?</a>
+                  </p>
                   <a href="#!" class="small text-muted">Condiciones de uso.</a>
                   <a href="#!" class="small text-muted">Política de privacidad</a>
                 </form>

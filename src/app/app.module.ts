@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegistroClienteComponent } from './registro-cliente/registro-cliente.component';
 import { HeaderComponent } from './header/header.component';
+import { RegistroDuenyoComponent } from './registro-duenyo/registro-duenyo.component';
+import { HomeDuenyoComponent } from './home-duenyo/home-duenyo.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { HeaderComponent } from './header/header.component';
     HomeComponent,
     RegistroClienteComponent,
     HeaderComponent,
+    RegistroDuenyoComponent,
+    HomeDuenyoComponent,
   ],
   imports: [
     BrowserModule,

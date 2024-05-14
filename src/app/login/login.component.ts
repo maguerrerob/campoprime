@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { PeticionesService } from '../servicios/peticiones.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-login',
@@ -13,6 +16,7 @@ export class LoginComponent {
   nombre: string="";
   password: string="";
   errorMensaje: string="";
+  rolInt: number= 0;
 
   constructor(private router: Router,
     private loginService: PeticionesService,
@@ -22,14 +26,23 @@ export class LoginComponent {
   loginFormulario(){
     const user = {usuario:this.nombre, pass:this.password};
     this.loginService.loginUsuario(user).subscribe((data) =>{
-      // Forma 1
       sessionStorage.setItem('token', data.access_token);
-      sessionStorage.setItem('token', data.access_token)
-      // Forma 2
-      // this.tokenService.setToken(data.access_token);
-      this.router.navigate(['/home']);
     }, error => {
       this.errorMensaje = "Usuario o contraseña inválidos. Inténtelo de nuevo";
     });
+
+    this.loginService.getUserLogged(sessionStorage.getItem('token')).subscribe((data) => {
+      if (data.rol == 2){
+        this.router.navigate(['/home'])
+      } else if (data.rol == 3){
+        this.router.navigate(['/home-club'])
+      }
+    })
+
+    // if (mirol == 2){
+    //   this.router.navigate(['/home']);
+    // } else if (this.rolInt == 3){
+    //   this.router.navigate(['login-duenyo_recinto'])
+    // }
   }
 }
