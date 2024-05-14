@@ -14,7 +14,7 @@ const baseUrl = "http://51.83.33.196:8000"
 })
 
 export class PeticionesService {
-  private url_crear_token =  'http://127.0.0.1:8000/oauth2/token/';
+  private url_crear_token =  baseUrl + '/oauth2/token/';
   private url_obtener_token = baseUrl + '/api/v1/usuario/token/';
   private url_registrar_user = baseUrl + '/api/v1/registrar/usuario/';
 
