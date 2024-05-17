@@ -31,10 +31,9 @@
                     <label class="form-label" for="form2Example17">Usuario</label>
                   </div>
                   <div
-                    *ngIf="
-                      loginForm.controls['nombre'].invalid &&
-                      (loginForm.controls['nombre'].dirty ||
-                        loginForm.controls['nombre'].touched)
+                    *ngIf="loginForm.controls['nombre']!.invalid &&
+                      (loginForm.controls['nombre']!.dirty ||
+                        loginForm.controls['nombre']!.touched)
                     "
                     class="alert alert-danger">
                     El nombre de usuario es requerido.
@@ -46,9 +45,9 @@
                   </div>
                   <div
                     *ngIf="
-                      loginForm.controls['password'].invalid &&
-                      (loginForm.controls['password'].dirty ||
-                      loginForm.controls['password'].touched)
+                      loginForm.controls['password']!.invalid &&
+                      (loginForm.controls['password']!.dirty ||
+                      loginForm.controls['password']!.touched)
                     " class="alert alert-danger">
                     La contraseña es requerida
                   </div>

@@ -29,7 +29,7 @@ export class RegistroDuenyoComponent {
       };
       this.registroDuenyo.registroService(dataSignUp).subscribe(
         response => {
-          this.router.navigate(['/home-duenyo']);
+          this.router.navigate(['/home']);
         },
         error => {
           console.log(error);

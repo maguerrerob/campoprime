@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
 })
 
 export class LoginComponent {
-  nombre: string="";
+  nombre!: string;
   password: string="";
   errorMensaje: string="";
   rolInt: number= 0;
@@ -35,7 +35,7 @@ export class LoginComponent {
       if (data.rol == 2){
         this.router.navigate(['/home'])
       } else if (data.rol == 3){
-        this.router.navigate(['/home-club'])
+        this.router.navigate(['/home-duenyo'])
       }
     })
 

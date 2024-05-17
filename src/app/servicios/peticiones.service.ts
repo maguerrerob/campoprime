@@ -5,9 +5,9 @@ import { catchError } from 'rxjs';
 // import { CookieService } from "ngx-cookie-service";
 
 //Despliegue
-const baseUrl = "http://51.83.33.196:8000"
+// const baseUrl = "http://51.83.33.196:8000"
 //Local
-// const baseUrl = "http://127.0.0.1:8000"
+const baseUrl = "http://127.0.0.1:8000"
 
 @Injectable({
   providedIn: 'root'
