@@ -11,6 +11,7 @@ import { RegistroClienteComponent } from './registro-cliente/registro-cliente.co
 import { HeaderComponent } from './header/header.component';
 import { RegistroDuenyoComponent } from './registro-duenyo/registro-duenyo.component';
 import { HomeDuenyoComponent } from './home-duenyo/home-duenyo.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HomeDuenyoComponent } from './home-duenyo/home-duenyo.component';
     HeaderComponent,
     RegistroDuenyoComponent,
     HomeDuenyoComponent,
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,
