@@ -30,11 +30,21 @@ export class RegistroClienteComponent {
     };
     this.registroCliente.registroService(dataSignUp).subscribe(
       response => {
-        this.router.navigate(['/home']);
+        const user = {usuario: this.username, pass: this.pass1}
+        this.registroCliente.loginUsuario(user).subscribe((data) =>{
+          sessionStorage.setItem('token', data.access_token);
+          this.iniciarSesion()
+        })
       },
       error => {
         console.log(error);
       }
     );
+  }
+
+  iniciarSesion(){
+    this.registroCliente.getUserLogged(sessionStorage.getItem('token')).subscribe((data) =>{
+      this.router.navigate(['/home'])
+    })
   }
 }

@@ -7,53 +7,75 @@ style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/
         <div class="card" style="border-radius: 15px;">
           <div class="card-body p-5">
             <h2 class="text-uppercase text-center mb-5">Crear un club</h2>
-            <form (ngSubmit)="registroFormulario()">
+            <form [formGroup]="registerForm" (ngSubmit)="registroFormulario()">
 
               <div data-mdb-input-init class="form-outline mb-4">
-                <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Nombre de usuario" 
-                    name="username" [(ngModel)]="username"
+                <input type="text"  class="form-control form-control-lg" placeholder="Nombre de usuario" 
+                  formControlName="username"
                 />
-                <label class="form-label" for="form3Example1cg"></label>
+              </div>
+
+              <div *ngIf="registerForm.get('username')!.invalid && registerForm.get('username')!.touched"
+                class="alert alert-danger"
+              >
+                El nombre de usuario es incorrecto.
               </div>
 
               <div data-mdb-input-init class="form-outline mb-4">
-                <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Nombre" 
-                    name="nombre"
+                <input type="text" class="form-control form-control-lg"
+                 placeholder="Nombre"
+                 formControlName="f_name"
                 />
-                <label class="form-label" for="form3Example1cg"></label>
               </div>
 
               <div data-mdb-input-init class="form-outline mb-4">
-                <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Apellidos"/>
-                <label class="form-label" for="form3Example1cg"></label>
+                <input type="text" class="form-control form-control-lg" placeholder="Apellidos"
+                  name="apellidos"
+                  formControlName="l_name"
+                />
               </div>
 
               <div data-mdb-input-init class="form-outline mb-4">
-                <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Email"
-                    name="email" [(ngModel)]="email"
+                <input type="text" class="form-control form-control-lg" placeholder="Email"
+                  name="email"
+                  formControlName="email"
                 />
-                <label class="form-label" for="form3Example1cg"></label>
+              </div>
+
+              <div *ngIf="registerForm.get('email')!.invalid && registerForm.get('email')!.touched"
+              class="alert alert-danger"
+              >
+                Escriba un email válido.
               </div>
 
               <div data-mdb-input-init class="form-outline mb-4">
-                <input type="password" id="form3Example1cg" class="form-control form-control-lg" placeholder="Contraseña"
-                    name="pass1" [(ngModel)]="pass1"
+                <input type="password" class="form-control form-control-lg"
+                  placeholder="Contraseña"
+                  name="pass1"
+                  formControlName="pass1"
                 />
-                <label class="form-label" for="form3Example1cg"></label>
+              </div>
+
+              <div *ngIf="registerForm.get('password')!.invalid && registerForm.get('password')!.touched"
+                class="alert alert-danger"
+              >
+                La contraseña es inválida.
               </div>
 
               <div data-mdb-input-init class="form-outline mb-4">
-                <input type="password" id="form3Example1cg" class="form-control form-control-lg" placeholder="Repetir contraseña"
-                    name="pass2" [(ngModel)]="pass2"
+                <input type="password" class="form-control form-control-lg"
+                  placeholder="Repetir contraseña"
+                  name="pass2"
+                  formControlName="pass2"
                 />
-                <label class="form-label" for="form3Example1cg"></label>
               </div>
 
               <div data-mdb-input-init class="form-outline mb-4">
-                <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Teléfono"
-                    name="telefono" [(ngModel)]="telefono"
+                <input type="text" class="form-control form-control-lg"
+                  placeholder="Teléfono"
+                  name="telefono"
+                  formControlName="telefono"
                 />
-                <label class="form-label" for="form3Example1cg"></label>
               </div>
 
               <div class="form-check d-flex justify-content-center mb-5">
@@ -65,10 +87,16 @@ style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/
 
               <div class="d-flex justify-content-center">
                 <button type="submit"
-                  data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                  data-mdb-button-init data-mdb-ripple-init 
+                  class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                  [disabled]="registerForm.invalid"
                 >
                   Registrarse
                 </button>
+              </div>
+
+              <div *ngIf="registerSuccess">
+                ¡Registro completado!
               </div>
 
               <p class="text-center text-muted mt-5 mb-0" style="color: #393f81;">¿Ya tienes cuenta? <a routerLink=""

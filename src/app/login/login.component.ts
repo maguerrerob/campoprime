@@ -27,10 +27,13 @@ export class LoginComponent {
     const user = {usuario:this.nombre, pass:this.password};
     this.loginService.loginUsuario(user).subscribe((data) =>{
       sessionStorage.setItem('token', data.access_token);
+      this.iniciarSesion()
     }, error => {
       this.errorMensaje = "Usuario o contraseña inválidos. Inténtelo de nuevo";
     });
+  }
 
+  iniciarSesion(){
     this.loginService.getUserLogged(sessionStorage.getItem('token')).subscribe((data) => {
       if (data.rol == 2){
         this.router.navigate(['/home'])
@@ -38,11 +41,5 @@ export class LoginComponent {
         this.router.navigate(['/home-duenyo'])
       }
     })
-
-    // if (mirol == 2){
-    //   this.router.navigate(['/home']);
-    // } else if (this.rolInt == 3){
-    //   this.router.navigate(['login-duenyo_recinto'])
-    // }
   }
 }
