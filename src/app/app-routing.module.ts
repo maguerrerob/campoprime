@@ -14,20 +14,8 @@ const routes: Routes = [
   {path: "registro-cliente", component: RegistroClienteComponent},
   {path: "registro-duenyo", component: RegistroDuenyoComponent},
   {path: "header", component: HeaderComponent},
-  {
-    path: "",
-    component: LayoutComponent,
-    children: [
-      {
-        path: "home",
-        component: HomeComponent
-      },
-      {
-        path: "home-duenyo",
-        component: HomeDuenyoComponent
-      },
-    ]
-  },
+  {path: "home", component: HomeComponent},
+  {path: "home-duenyo",component: HomeDuenyoComponent},
 ];
 
 @NgModule({

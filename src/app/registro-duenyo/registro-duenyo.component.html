@@ -30,14 +30,12 @@ style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/
 
               <div data-mdb-input-init class="form-outline mb-4">
                 <input type="text" class="form-control form-control-lg" placeholder="Apellidos"
-                  name="apellidos"
                   formControlName="l_name"
                 />
               </div>
 
               <div data-mdb-input-init class="form-outline mb-4">
                 <input type="text" class="form-control form-control-lg" placeholder="Email"
-                  name="email"
                   formControlName="email"
                 />
               </div>
@@ -51,12 +49,11 @@ style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/
               <div data-mdb-input-init class="form-outline mb-4">
                 <input type="password" class="form-control form-control-lg"
                   placeholder="Contraseña"
-                  name="pass1"
                   formControlName="pass1"
                 />
               </div>
 
-              <div *ngIf="registerForm.get('password')!.invalid && registerForm.get('password')!.touched"
+              <div *ngIf="registerForm.get('pass1')!.invalid && registerForm.get('pass1')!.touched"
                 class="alert alert-danger"
               >
                 La contraseña es inválida.
@@ -65,7 +62,6 @@ style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/
               <div data-mdb-input-init class="form-outline mb-4">
                 <input type="password" class="form-control form-control-lg"
                   placeholder="Repetir contraseña"
-                  name="pass2"
                   formControlName="pass2"
                 />
               </div>
@@ -73,7 +69,6 @@ style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/
               <div data-mdb-input-init class="form-outline mb-4">
                 <input type="text" class="form-control form-control-lg"
                   placeholder="Teléfono"
-                  name="telefono"
                   formControlName="telefono"
                 />
               </div>

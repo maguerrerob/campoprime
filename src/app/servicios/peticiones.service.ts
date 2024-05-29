@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs';
+import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 // import { CookieService } from "ngx-cookie-service";
 
 //Despliegue
@@ -15,16 +16,21 @@ const baseUrl = "http://127.0.0.1:8000"
 
 export class PeticionesService {
   private url_crear_token =  baseUrl + '/oauth2/token/';
-  private url_obtener_token = baseUrl + '/api/v1/usuario/token/';
+  private url_obtener_user = baseUrl + '/api/v1/usuario/token/';
   private url_registrar_user = baseUrl + '/api/v1/registrar/usuario/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private oauthService: OAuthService
+  ) {
+    this.initLoginGoogle();
+  }
 
   loginUsuario(datosLogin: any): Observable<any> {
     const datosCrearToken = new HttpParams()
     .set('grant_type', 'password')
     .set('username', datosLogin['usuario'])
     .set('password', datosLogin['pass'])
+    
     .set('client_id', 'client_id')
     .set('client_secret', '1234Probando.');
 
@@ -55,7 +61,7 @@ export class PeticionesService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + token
     });
-    return this.http.get<any>(`${this.url_obtener_token}`+`${token}`, { headers })
+    return this.http.get<any>(`${this.url_obtener_user}`+`${token}`, { headers })
     .pipe(
       catchError(error => {
         throw error;
@@ -74,4 +80,30 @@ export class PeticionesService {
   // getServicios(): Observable<any[]> {
   //   return this.http.get<any[]>(`${baseUrl}/listar_servicios`);
   // }
+
+  initLoginGoogle(){
+    const config: AuthConfig = {
+      issuer: 'https://accounts.google.com',
+      strictDiscoveryDocumentValidation: false,
+      clientId: '450213620048-qcqje06s286vbgv2077bh06tvcb1a40j.apps.googleusercontent.com',
+      redirectUri: window.location.origin + '/home',
+      scope: 'openid profile email',
+    }
+
+    this.oauthService.configure(config);
+    this.oauthService.setupAutomaticSilentRefresh();
+    this.oauthService.loadDiscoveryDocumentAndTryLogin();
+  }
+
+  loginGoogle(){
+    this.oauthService.initLoginFlow();
+  }
+
+  logoutGoogle(){
+    this.oauthService.logOut();
+  }
+
+  getProfileGoogle(){
+    return this.oauthService.getIdentityClaims();
+  }
 }

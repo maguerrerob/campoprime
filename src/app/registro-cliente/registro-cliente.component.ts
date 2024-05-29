@@ -10,6 +10,8 @@ import { FormBuilder, FormControl } from '@angular/forms';
 })
 export class RegistroClienteComponent {
   username: string="";
+  f_name: string="";
+  l_name: string="";
   email: string="";
   pass1: string="";
   pass2: string="";
@@ -22,6 +24,8 @@ export class RegistroClienteComponent {
   registroFormulario() {
     const dataSignUp = {
       username: this.username,
+      first_name: this.f_name,
+      last_name: this.l_name,
       email: this.email,
       password1: this.pass1,
       password2: this.pass2,
@@ -30,6 +34,8 @@ export class RegistroClienteComponent {
     };
     this.registroCliente.registroService(dataSignUp).subscribe(
       response => {
+        console.log(response);
+        
         const user = {usuario: this.username, pass: this.pass1}
         this.registroCliente.loginUsuario(user).subscribe((data) =>{
           sessionStorage.setItem('token', data.access_token);

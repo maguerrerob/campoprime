@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { RegistroDuenyoComponent } from './registro-duenyo/registro-duenyo.component';
 import { HomeDuenyoComponent } from './home-duenyo/home-duenyo.component';
 import { LayoutComponent } from './layout/layout.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LayoutComponent } from './layout/layout.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OAuthModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

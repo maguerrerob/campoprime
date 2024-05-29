@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { PeticionesService } from '../servicios/peticiones.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -9,6 +9,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
   styleUrl: './registro-duenyo.component.scss'
 })
 export class RegistroDuenyoComponent{
+  @Output() datosFromChild = new EventEmitter();
+  first_name!: string
   // username: string="";
   // email: string="";
   // pass1: string="";
@@ -38,20 +40,23 @@ export class RegistroDuenyoComponent{
     registroFormulario() {
       if (this.registerForm.valid){
         const dataSignUp = {
-          username: this.registerForm.get('username'),
-          email: this.registerForm.get('email'),
-          // first_name: this.registerForm.get('f_name'),
-          // last_name: this.registerForm.get('l_name'),
-          password1: this.registerForm.get('pass1'),
-          // password2: this.registerForm.get('pass2'),
-          // rol: "3",
-          // telefono: this.registerForm.get('telefono'),
+          username: this.registerForm.value.username,
+          email: this.registerForm.value.email,
+          first_name: this.registerForm.value.f_name,
+          last_name: this.registerForm.value.l_name,
+          password1: this.registerForm.value.pass1,
+          password2: this.registerForm.value.pass2,
+          rol: "3",
+          telefono: this.registerForm.value.telefono,
         };
+        
         this.registroDuenyo.registroService(dataSignUp).subscribe(
           response => {
-            const user = {usuario:dataSignUp['username'], pass:dataSignUp['password1']};
+
+            const user = {usuario:response.username, pass:response.password};
             this.registroDuenyo.loginUsuario(user).subscribe((data) =>{
               sessionStorage.setItem('token', data.access_token);
+              
               this.iniciarSesion()
             })
           },
@@ -64,10 +69,17 @@ export class RegistroDuenyoComponent{
     
     iniciarSesion(){
       this.registroDuenyo.getUserLogged(sessionStorage.getItem('token')).subscribe((data) =>{
+        this.first_name = data.first_name
+        this.shareFirstName()
         this.registerSuccess = true
         setTimeout(() => {
           this.router.navigate(['/home-duenyo']);
         }, 1000);
       })
+    }
+
+    shareFirstName() {
+      // Se usa método emit para compartir al padre
+      this.datosFromChild.emit(this.first_name)
     }
 }

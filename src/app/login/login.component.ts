@@ -42,4 +42,8 @@ export class LoginComponent {
       }
     })
   }
+
+  loginGoogle(){
+    this.loginService.loginGoogle()
+  }
 }
