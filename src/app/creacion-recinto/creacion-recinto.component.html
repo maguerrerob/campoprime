@@ -1,0 +1,222 @@
+<h1>Creacion del recinto</h1>
+<form (ngSubmit)="recintoCreate()">
+    <div class="container mt-4 shadow p-3 mb-5 bg-white rounded-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="form-floating mt-2">
+                    <input type="text"
+                        name="nombre"
+                        [(ngModel)]="nombre"
+                        class="form-control"
+                        id="floatingInput"
+                        placeholder="Nombre"
+                        name="nombre"
+                    />
+                    <label for="floatingInput">Nombre</label>
+                </div>
+                <div class="mt-4">
+                    <label for="description" class="form-label">Descripción</label>
+                    <textarea class="form-control" 
+                        id="description"
+                        rows="3"
+                        [(ngModel)]="descripcion"
+                        name="descripcion"
+                    ></textarea>
+                </div>
+                <div class="mt-4">
+                    <label for="ciudades" class="me-2">Ciudad</label>
+                    <select id="ciudades" name="ciudades"
+                        [(ngModel)]="ciudad"
+                        name="ciudad"
+                    >
+                        <option value="albacete">Albacete</option>
+                        <option value="alicante">Alicante</option>
+                        <option value="almeria">Almería</option>
+                        <option value="avila">Ávila</option>
+                        <option value="badajoz">Badajoz</option>
+                        <option value="barcelona">Barcelona</option>
+                        <option value="bilbao">Bilbao</option>
+                        <option value="burgos">Burgos</option>
+                        <option value="cadiz">Cádiz</option>
+                        <option value="castellon">Castellón de la Plana</option>
+                        <option value="ceuta">Ceuta</option>
+                        <option value="cordoba">Córdoba</option>
+                        <option value="elche">Elche</option>
+                        <option value="girona">Girona</option>
+                        <option value="granada">Granada</option>
+                        <option value="guadalajara">Guadalajara</option>
+                        <option value="hospitalet">L'Hospitalet de Llobregat</option>
+                        <option value="huelva">Huelva</option>
+                        <option value="jaen">Jaén</option>
+                        <option value="las-palmas">Las Palmas de Gran Canaria</option>
+                        <option value="lleida">Lleida</option>
+                        <option value="logrono">Logroño</option>
+                        <option value="madrid">Madrid</option>
+                        <option value="malaga">Málaga</option>
+                        <option value="melilla">Melilla</option>
+                        <option value="murcia">Murcia</option>
+                        <option value="oviedo">Oviedo</option>
+                        <option value="palma">Palma</option>
+                        <option value="salamanca">Salamanca</option>
+                        <option value="san-sebastian">San Sebastián</option>
+                        <option value="santander">Santander</option>
+                        <option value="sevilla">Sevilla</option>
+                        <option value="segovia">Segovia</option>
+                        <option value="tarragona">Tarragona</option>
+                        <option value="terrassa">Terrassa</option>
+                        <option value="valencia">Valencia</option>
+                        <option value="valladolid">Valladolid</option>
+                        <option value="vigo">Vigo</option>
+                        <option value="vitoria">Vitoria-Gasteiz</option>
+                        <option value="zamora">Zamora</option>
+                        <option value="zaragoza">Zaragoza</option>
+                      </select>
+                </div>
+                <div class="mt-3">
+                    <label class="mt-4" for="formRange1" class="form-label">Precio por hora</label>
+                </div>
+                <div class="col-6 d-flex align-items-center">
+                    <input type="range"
+                        class="form-range me-3" 
+                        min="1"
+                        value="1" step="0.1" 
+                        id="formRange1" 
+                        oninput="this.nextElementSibling.value = this.value"
+                        [(ngModel)]="precio_por_hora"
+                        name="precio_por_hora"
+                    >
+                    <output></output>€
+                </div>
+                <!-- <div *ngIf="pricePerHour.invalid && (pricePerHour.dirty || pricePerHour.touched)" class="text-danger">
+                    <div *ngIf="pricePerHour.errors?.required">El precio es requerido.</div>
+                    <div *ngIf="pricePerHour.errors?.min">El precio debe ser al menos 1.</div>
+                </div> -->
+                <div class="mt-4">
+                    <label class="me-2" for="hora_ape">Hora apertura</label>
+                    <select name="hora_ape"
+                        id="hora_ape"
+                        [(ngModel)]="hora_inicio"
+                        name="hora_inicio"
+                    >
+                        <option value="00:00">00:00</option>
+                        <option value="00:30">00:30</option>
+                        <option value="1:00">1:00</option>
+                        <option value="1:30">1:30</option>
+                        <option value="2:00">2:00</option>
+                        <option value="2:30">2:30</option>
+                        <option value="3:00">3:00</option>
+                        <option value="3:30">3:30</option>
+                        <option value="4:00">4:00</option>
+                        <option value="4:30">4:30</option>
+                        <option value="5:00">5:00</option>
+                        <option value="5:30">5:30</option>
+                        <option value="6:00">6:00</option>
+                        <option value="6:30">6:30</option>
+                        <option value="7:00">7:00</option>
+                        <option value="7:30">7:30</option>
+                        <option value="8:00">8:00</option>
+                        <option value="8:30">8:30</option>
+                        <option value="9:00">9:00</option>
+                        <option value="9:30">9:30</option>
+                        <option value="10:00">10:00</option>
+                        <option value="10:30">10:30</option>
+                        <option value="11:00">11:00</option>
+                        <option value="11:30">11:30</option>
+                        <option value="12:00">12:00</option>
+                        <option value="12:30">12:30</option>
+                        <option value="13:00">13:00</option>
+                        <option value="13:30">13:30</option>
+                        <option value="14:00">14:00</option>
+                        <option value="14:30">14:30</option>
+                        <option value="15:00">15:00</option>
+                        <option value="15:30">15:30</option>
+                        <option value="16:00">16:00</option>
+                        <option value="16:30">16:30</option>
+                        <option value="17:00">17:00</option>
+                        <option value="17:30">17:30</option>
+                        <option value="18:00">18:00</option>
+                        <option value="18:30">18:30</option>
+                        <option value="19:00">19:00</option>
+                        <option value="19:30">19:30</option>
+                        <option value="20:00">20:00</option>
+                        <option value="20:30">20:30</option>
+                        <option value="21:00">21:00</option>
+                        <option value="21:30">21:30</option>
+                        <option value="22:00">22:00</option>
+                        <option value="22:30">22:30</option>
+                        <option value="23:00">23:00</option>
+                        <option value="23:30">23:30</option>
+                    </select>
+                    <label class="ms-4 me-2" for="hora_cie">Hora cierre</label>
+                    <select name="hora_cie"
+                        id="hora_cie"
+                        [(ngModel)]="hora_fin"
+                        name="hora_fin"
+                    >
+                        <option value="00:00">00:00</option>
+                        <option value="00:30">00:30</option>
+                        <option value="1:00">1:00</option>
+                        <option value="1:30">1:30</option>
+                        <option value="2:00">2:00</option>
+                        <option value="2:30">2:30</option>
+                        <option value="3:00">3:00</option>
+                        <option value="3:30">3:30</option>
+                        <option value="4:00">4:00</option>
+                        <option value="4:30">4:30</option>
+                        <option value="5:00">5:00</option>
+                        <option value="5:30">5:30</option>
+                        <option value="6:00">6:00</option>
+                        <option value="6:30">6:30</option>
+                        <option value="7:00">7:00</option>
+                        <option value="7:30">7:30</option>
+                        <option value="8:00">8:00</option>
+                        <option value="8:30">8:30</option>
+                        <option value="9:00">9:00</option>
+                        <option value="9:30">9:30</option>
+                        <option value="10:00">10:00</option>
+                        <option value="10:30">10:30</option>
+                        <option value="11:00">11:00</option>
+                        <option value="11:30">11:30</option>
+                        <option value="12:00">12:00</option>
+                        <option value="12:30">12:30</option>
+                        <option value="13:00">13:00</option>
+                        <option value="13:30">13:30</option>
+                        <option value="14:00">14:00</option>
+                        <option value="14:30">14:30</option>
+                        <option value="15:00">15:00</option>
+                        <option value="15:30">15:30</option>
+                        <option value="16:00">16:00</option>
+                        <option value="16:30">16:30</option>
+                        <option value="17:00">17:00</option>
+                        <option value="17:30">17:30</option>
+                        <option value="18:00">18:00</option>
+                        <option value="18:30">18:30</option>
+                        <option value="19:00">19:00</option>
+                        <option value="19:30">19:30</option>
+                        <option value="20:00">20:00</option>
+                        <option value="20:30">20:30</option>
+                        <option value="21:00">21:00</option>
+                        <option value="21:30">21:30</option>
+                        <option value="22:00">22:00</option>
+                        <option value="22:30">22:30</option>
+                        <option value="23:00">23:00</option>
+                        <option value="23:30">23:30</option>
+                    </select>
+                </div>
+
+                <!-- <div class="mt-4">
+                    <label for="formFileMultiple" class="form-label">Imágenes del recinto</label>
+                    <input class="form-control" 
+                        type="file"
+                        id="formFileMultiple" 
+                        multiple
+                        [(ngModel)]="imagen"
+                        name="imagen"
+                    >
+                    <div id="formFileMultiple" class="form-text">Deje pulsado la tecla CTRL para seleccionar varias.</div>
+                </div> -->
+                <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+            </div>
+        </div>
+    </div>
+</form>

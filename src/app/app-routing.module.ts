@@ -8,6 +8,7 @@ import { RegistroClienteComponent } from './registro-cliente/registro-cliente.co
 import { HeaderComponent } from './header/header.component';
 import { RegistroDuenyoComponent } from './registro-duenyo/registro-duenyo.component';
 import { HomeDuenyoComponent } from './home-duenyo/home-duenyo.component';
+import { CreacionRecintoComponent } from './creacion-recinto/creacion-recinto.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: "header", component: HeaderComponent},
   {path: "home", component: HomeComponent},
   {path: "home-duenyo",component: HomeDuenyoComponent},
+  {path: 'creacion-recinto', component: CreacionRecintoComponent}
 ];
 
 @NgModule({

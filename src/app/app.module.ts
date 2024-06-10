@@ -13,6 +13,7 @@ import { RegistroDuenyoComponent } from './registro-duenyo/registro-duenyo.compo
 import { HomeDuenyoComponent } from './home-duenyo/home-duenyo.component';
 import { LayoutComponent } from './layout/layout.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { CreacionRecintoComponent } from './creacion-recinto/creacion-recinto.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     RegistroDuenyoComponent,
     HomeDuenyoComponent,
     LayoutComponent,
+    CreacionRecintoComponent,
   ],
   imports: [
     BrowserModule,

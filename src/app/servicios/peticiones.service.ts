@@ -6,23 +6,41 @@ import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 // import { CookieService } from "ngx-cookie-service";
 
 //Despliegue
-// const baseUrl = "http://51.83.33.196:8000"
+// const baseUrl = "http://51.83.33.196:8000/api/v1/"
 //Local
-const baseUrl = "http://127.0.0.1:8000"
+const baseUrl = "http://127.0.0.1:8000/api/v1/"
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class PeticionesService {
-  private url_crear_token =  baseUrl + '/oauth2/token/';
-  private url_obtener_user = baseUrl + '/api/v1/usuario/token/';
-  private url_registrar_user = baseUrl + '/api/v1/registrar/usuario/';
+  private url_crear_token =  'http://127.0.0.1:8000/oauth2/token/';
+  private url_obtener_user = baseUrl + 'usuario/token/';
+  private url_registrar_user = baseUrl + 'registrar/usuario/';
+  private url_recintos_by_duenyo = baseUrl + 'duenyo_recintos/'
+  private url_crear_recinto = baseUrl + 'recinto/post/';
 
   constructor(private http: HttpClient,
     private oauthService: OAuthService
   ) {
     this.initLoginGoogle();
+  }
+
+  getToken(): string{
+    return sessionStorage.getItem('token') || '';
+  }
+
+  getHeaders(): HttpHeaders {
+    const token = this.getToken();
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+  }
+
+  getRecintosByDuenyoRecintoId(DuenyoRecintoId: number, token: string): Observable<any> {
+    const headers = { 'Authorization': `Bearer ${token}` };
+    return this.http.get(`${this.url_recintos_by_duenyo}${DuenyoRecintoId}/recintos/`, { headers });
   }
 
   loginUsuario(datosLogin: any): Observable<any> {
@@ -105,5 +123,15 @@ export class PeticionesService {
 
   getProfileGoogle(){
     return this.oauthService.getIdentityClaims();
+  }
+
+  createRecinto(data: any): Observable<any>{
+    const headers = this.getHeaders();
+    return this.http.post<any>(`${this.url_crear_recinto}`, data, { headers })
+    .pipe(
+      catchError(error => {
+        throw error
+      })
+    );
   }
 }
