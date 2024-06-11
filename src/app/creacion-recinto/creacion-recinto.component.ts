@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrl: './creacion-recinto.component.scss'
 })
 export class CreacionRecintoComponent{
+  public duenyo_recinto_id!: any
   public nombre!: string;
   public descripcion!: string;
   public ciudad!: string;
@@ -58,8 +59,17 @@ export class CreacionRecintoComponent{
     // }
   }
 
+  logout(){
+    sessionStorage.clear()
+    this.router.navigate(['/'])
+  }
+
+
   recintoCreate(){
     const data = new FormData();
+    this.duenyo_recinto_id = sessionStorage.getItem('id')
+    console.log(this.duenyo_recinto_id);
+    data.append('duenyo_recinto_id', this.duenyo_recinto_id)
     data.append('nombre', this.nombre);
     data.append('descripcion', this.descripcion);
     data.append('ciudad', this.ciudad);

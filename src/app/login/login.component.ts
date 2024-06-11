@@ -35,6 +35,7 @@ export class LoginComponent {
 
   iniciarSesion(){
     this.loginService.getUserLogged(sessionStorage.getItem('token')).subscribe((data) => {
+      sessionStorage.setItem('id', data.id)
       if (data.rol == 2){
         this.router.navigate(['/home'])
       } else if (data.rol == 3){

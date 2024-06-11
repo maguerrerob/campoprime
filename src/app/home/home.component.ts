@@ -25,7 +25,7 @@ export class HomeComponent implements AfterViewInit{
   }
 
   logout(){
-    sessionStorage.removeItem('token');
+    sessionStorage.clear()
     this.router.navigate(['/'])
   }
 
