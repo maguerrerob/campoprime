@@ -3,3 +3,21 @@
     border: 1px solid black; /* Agrega un borde opcional */
     padding: 20px; /* Añade un espacio interno opcional */
 }
+
+.cerrarSesion:hover{
+    background-color: white;
+    border: solid 1px red;
+    color: red;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+.form-footer {
+    position: absolute;
+    bottom: 8%;
+    left: 5%;
+    width: 92%;
+    border-radius: 25px;
+}
