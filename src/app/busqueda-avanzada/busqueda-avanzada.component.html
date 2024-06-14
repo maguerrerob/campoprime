@@ -1,0 +1,30 @@
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<nav class="navbar navbar-light">
+    <img src="/assets/img/logo.png" style="width: 100px;" alt="">
+    <form action="" class="row d-flex align-items-center form-footer bg-white p-3">
+        <div class="col-5 col-md-6">
+            <input type="text"
+                name="ciudad"
+                class="form-control"
+                placeholder="Ciudad / Nombre del recinto"
+            />
+        </div>
+        <div class="col-3 col-md-auto">
+            <input id="dia" type="date" class="form-control"
+                [(ngModel)]="dia"
+                name="dia"
+            >
+        </div>
+        <div class="col-4 col-md-auto ml-auto">
+            <button class="btn btn-primary d-flex align-items-center btn-custom" (click)="buscarRecintos()">
+                <i class="fas fa-sign-out-alt mr-2"></i>Buscar
+            </button>
+        </div>
+        
+    </form>
+    <button type="submit" (click)="logout()" class="btn btn-danger btn-md cerrarSesion">
+        <i class="fas fa-sign-out-alt"></i>Cerrar Sesión
+    </button>
+</nav>
+

@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { RegistroDuenyoComponent } from './registro-duenyo/registro-duenyo.component';
 import { HomeDuenyoComponent } from './home-duenyo/home-duenyo.component';
 import { CreacionRecintoComponent } from './creacion-recinto/creacion-recinto.component';
+import { BusquedaAvanzadaComponent } from './busqueda-avanzada/busqueda-avanzada.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: "header", component: HeaderComponent},
   {path: "home", component: HomeComponent},
   {path: "home-duenyo",component: HomeDuenyoComponent},
-  {path: 'creacion-recinto', component: CreacionRecintoComponent}
+  {path: 'creacion-recinto', component: CreacionRecintoComponent},
+  {path: 'busqueda-avanzada', component: BusquedaAvanzadaComponent }
 ];
 
 @NgModule({

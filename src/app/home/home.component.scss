@@ -13,6 +13,8 @@
 .image-container {
     position: relative;
     display: inline-block;
+    width: 75%;
+    left: 13%;
 }
 .form-footer {
     position: absolute;
@@ -20,4 +22,29 @@
     left: 5%;
     width: 92%;
     border-radius: 25px;
+}
+
+.btn-custom {
+    width: 100%; /* Por defecto ocupa todo el ancho en pantallas pequeñas */
+    // padding: 10px 20px;
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    .btn-custom {
+        width: auto; /* Deja que el botón ocupe su tamaño por defecto */
+        padding: 5px 15px;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .responsive-header {
+        font-size: 1.5rem; /* Tamaño de fuente para pantallas más pequeñas */
+    }
+
+    .image-container{
+        width: 100%;
+        left: 0%;
+    }
 }

@@ -21,10 +21,9 @@ export class HomeComponent{
   }
 
 
-  ensenyar(){
-    console.log(typeof(this.dia));
-    
-    console.log(this.dia);
+  busqueda(){
+    // Lógica búsqueda recintos
+    this.router.navigate(['/busqueda-avanzada'])
   }
   
 

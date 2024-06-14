@@ -14,6 +14,7 @@ import { HomeDuenyoComponent } from './home-duenyo/home-duenyo.component';
 import { LayoutComponent } from './layout/layout.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { CreacionRecintoComponent } from './creacion-recinto/creacion-recinto.component';
+import { BusquedaAvanzadaComponent } from './busqueda-avanzada/busqueda-avanzada.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CreacionRecintoComponent } from './creacion-recinto/creacion-recinto.co
     HomeDuenyoComponent,
     LayoutComponent,
     CreacionRecintoComponent,
+    BusquedaAvanzadaComponent,
   ],
   imports: [
     BrowserModule,
