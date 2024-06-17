@@ -35,7 +35,8 @@ export class LoginComponent {
 
   iniciarSesion(){
     this.loginService.getUserLogged(sessionStorage.getItem('token')).subscribe((data) => {
-      sessionStorage.setItem('id', data.id)
+      sessionStorage.setItem('id', data.id);
+      this.getDuenyorecintoId(data.id)
       sessionStorage.setItem('username', data.username);
       sessionStorage.setItem('first_name', data.first_name);
       sessionStorage.setItem('last_name', data.last_name);
@@ -46,6 +47,13 @@ export class LoginComponent {
         this.router.navigate(['/home-duenyo'])
       }
     })
+  }
+
+  getDuenyorecintoId(usuario_id:string){
+    this.loginService.getDuenyorecintoId(usuario_id).subscribe((data) => {
+      sessionStorage.setItem('duenyo_recinto_id', data.duenyo_recinto_id)
+    })
+    this.router.navigate(['/home-duenyo'])
   }
 
   loginGoogle(){

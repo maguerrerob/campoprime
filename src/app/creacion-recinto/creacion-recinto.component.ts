@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrl: './creacion-recinto.component.scss'
 })
 export class CreacionRecintoComponent{
-  public duenyo_recinto_id!: any
+  public duenyo_recinto!: any
   public nombre!: string;
   public descripcion!: string;
   public ciudad!: string;
@@ -65,27 +65,21 @@ export class CreacionRecintoComponent{
   }
 
 
-  recintoCreate(){
-    const data = new FormData();
-    this.duenyo_recinto_id = sessionStorage.getItem('id')
-    console.log(this.duenyo_recinto_id);
-    data.append('duenyo_recinto_id', this.duenyo_recinto_id)
-    data.append('nombre', this.nombre);
-    data.append('descripcion', this.descripcion);
-    data.append('ciudad', this.ciudad);
-    data.append('precio_por_hora', this.precio_por_hora.toString());
-    this.hora_inicio_formateada = this.convertHora(this.hora_inicio);
-    data.append('hora_inicio', this.hora_inicio_formateada);
-    this.hora_fin_formateada = this.convertHora(this.hora_fin)
-    data.append('hora_fin', this.hora_fin_formateada);
-    // if (this.imagen){
-    //   data.append('imagen', this.imagen);
-    // }
+  recintoCreate() {
+    const data = {
+      duenyo_recinto: sessionStorage.getItem('duenyo_recinto_id'),
+      nombre: this.nombre,
+      descripcion: this.descripcion,
+      ciudad: this.ciudad,
+      precio_por_hora: this.precio_por_hora,
+      hora_inicio: this.convertHora(this.hora_inicio),
+      hora_fin: this.convertHora(this.hora_fin),
+    };
+
     this.peticionesService.createRecinto(data).subscribe(response => {
       console.log("hecho");
-      
     }, error => {
       console.log(error);
-    })
+    });
   }
 }

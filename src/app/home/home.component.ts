@@ -23,7 +23,11 @@ export class HomeComponent{
 
   busqueda(){
     // Lógica búsqueda recintos
-    this.router.navigate(['/busqueda-avanzada'])
+    console.log(this.dia);
+    console.log(typeof(this.dia));
+    
+    
+    // this.router.navigate(['/busqueda-avanzada'])
   }
   
 

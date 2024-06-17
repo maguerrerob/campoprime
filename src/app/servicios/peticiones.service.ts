@@ -20,6 +20,7 @@ export class PeticionesService {
   private url_registrar_user = baseUrl + 'registrar/usuario/';
   private url_recintos_by_duenyo = baseUrl + 'duenyo_recintos/'
   private url_crear_recinto = baseUrl + 'recinto/post/';
+  private url_getDuenyorecinto_Id = baseUrl + 'getDuenyorecintoId/'
 
   constructor(private http: HttpClient,
     private oauthService: OAuthService
@@ -41,6 +42,11 @@ export class PeticionesService {
   getRecintosByDuenyoRecintoId(DuenyoRecintoId: number, token: string): Observable<any> {
     const headers = { 'Authorization': `Bearer ${token}` };
     return this.http.get(`${this.url_recintos_by_duenyo}${DuenyoRecintoId}/recintos/`, { headers });
+  }
+
+  getDuenyorecintoId(usuario_id: string): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.get(`${this.url_getDuenyorecinto_Id}${usuario_id}`, { headers });
   }
 
   loginUsuario(datosLogin: any): Observable<any> {
@@ -133,5 +139,15 @@ export class PeticionesService {
         throw error
       })
     );
+  }
+
+  getrecintos(): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.get<any>(`http://127.0.0.1:8000/api/v1/recinto/lista`, { headers })
+      .pipe(
+        catchError(error => {
+          throw error;
+        })
+      );
   }
 }

@@ -15,6 +15,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { CreacionRecintoComponent } from './creacion-recinto/creacion-recinto.component';
 import { BusquedaAvanzadaComponent } from './busqueda-avanzada/busqueda-avanzada.component';
+import { ListaRecintosComponent } from './lista-recintos/lista-recintos.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { BusquedaAvanzadaComponent } from './busqueda-avanzada/busqueda-avanzada
     LayoutComponent,
     CreacionRecintoComponent,
     BusquedaAvanzadaComponent,
+    ListaRecintosComponent,
   ],
   imports: [
     BrowserModule,
