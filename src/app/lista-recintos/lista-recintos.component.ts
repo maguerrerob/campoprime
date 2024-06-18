@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrl: './lista-recintos.component.scss'
 })
 export class ListaRecintosComponent {
+  
   recintos!: any;
 
   constructor(
