@@ -1,0 +1,22 @@
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<nav class="navbar navbar-light  justify-content-between">
+    <img src="/assets/img/logo.png" style="width: 100px;" alt="">
+    <button type="submit" (click)="logout()" class="btn btn-danger btn-md cerrarSesion">
+        <i class="fas fa-sign-out-alt"></i>Cerrar Sesión
+    </button>
+</nav>
+
+
+
+<div class="container">
+    <h1 class="my-4">Cuadrante de Reservas {{ nombreRecinto }}</h1>
+    <div id="schedule" class="d-flex flex-wrap">
+        <div *ngFor="let hour of getHoursRange(hora_apertura_recinto, hora_cierre_recinto)" 
+             class="hour-slot" 
+             [ngClass]="{'reserved': isReserved(hour), 'available': !isReserved(hour)}"
+             (click)="!isReserved(hour) && reservarHora(hour)">
+            {{ hour }}:00 - {{ hour + 1 }}:00
+        </div>
+    </div>
+</div>

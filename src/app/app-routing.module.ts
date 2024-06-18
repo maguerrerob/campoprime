@@ -11,6 +11,7 @@ import { HomeDuenyoComponent } from './home-duenyo/home-duenyo.component';
 import { CreacionRecintoComponent } from './creacion-recinto/creacion-recinto.component';
 import { BusquedaAvanzadaComponent } from './busqueda-avanzada/busqueda-avanzada.component';
 import { ListaRecintosComponent } from './lista-recintos/lista-recintos.component';
+import { RecintoComponent } from './recinto/recinto.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: "home-duenyo",component: HomeDuenyoComponent},
   {path: 'creacion-recinto', component: CreacionRecintoComponent},
   {path: 'busqueda-avanzada', component: BusquedaAvanzadaComponent },
-  {path: 'lista-recintos', component: ListaRecintosComponent}
+  {path: 'lista-recintos', component: ListaRecintosComponent},
+  {path: 'recinto/:id', component: RecintoComponent},
 ];
 
 @NgModule({

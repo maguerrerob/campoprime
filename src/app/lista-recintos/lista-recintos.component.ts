@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrl: './lista-recintos.component.scss'
 })
 export class ListaRecintosComponent {
-  recintos: any;
+  recintos!: any;
 
   constructor(
     private peticionesService: PeticionesService,
@@ -21,10 +21,15 @@ export class ListaRecintosComponent {
 
   listarecintos(): void {
     this.peticionesService.getrecintos().subscribe((data: any) => {
-      this.recintos = data;
-      console.log(this.recintos)
-
-    });
+      console.log(data);
+      
+        this.recintos = data;
+        console.log('Recintos obtenidos:', this.recintos);
+      },
+      error => {
+        console.error('Error al obtener recintos:', error);
+      }
+    );
   }
 
 }

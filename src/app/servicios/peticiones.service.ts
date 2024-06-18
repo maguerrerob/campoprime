@@ -20,7 +20,9 @@ export class PeticionesService {
   private url_registrar_user = baseUrl + 'registrar/usuario/';
   private url_recintos_by_duenyo = baseUrl + 'duenyo_recintos/'
   private url_crear_recinto = baseUrl + 'recinto/post/';
-  private url_getDuenyorecinto_Id = baseUrl + 'getDuenyorecintoId/'
+  private url_getDuenyorecinto_Id = baseUrl + 'getDuenyorecintoId/';
+  private url_consultarReservasDia = baseUrl + 'reservas/'
+  private url_horarioRecinto = baseUrl + 'horario/recinto/';
 
   constructor(private http: HttpClient,
     private oauthService: OAuthService
@@ -149,5 +151,20 @@ export class PeticionesService {
           throw error;
         })
       );
+  }
+
+  obtenerReservas(recintoId: number, dia: string): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.get(`${this.url_consultarReservasDia}${recintoId}/${dia}/`, { headers });
+  }
+
+  consultarHorarioRecinto(idRecinto: any): Observable<any> {
+    const headers = this.getHeaders()
+    return this.http.get<any>(`${this.url_horarioRecinto}`+`${idRecinto}`, { headers })
+    .pipe(
+      catchError(error => {
+        throw error;
+      })
+    );
   }
 }
