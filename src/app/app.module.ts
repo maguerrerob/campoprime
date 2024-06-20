@@ -17,6 +17,7 @@ import { CreacionRecintoComponent } from './creacion-recinto/creacion-recinto.co
 import { BusquedaAvanzadaComponent } from './busqueda-avanzada/busqueda-avanzada.component';
 import { ListaRecintosComponent } from './lista-recintos/lista-recintos.component';
 import { RecintoComponent } from './recinto/recinto.component';
+import { PagoComponent } from './pago/pago.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { RecintoComponent } from './recinto/recinto.component';
     BusquedaAvanzadaComponent,
     ListaRecintosComponent,
     RecintoComponent,
+    PagoComponent,
   ],
   imports: [
     BrowserModule,

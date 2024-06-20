@@ -17,6 +17,7 @@ export class RegistroDuenyoComponent{
   pass2: string="";
   rol: string ="";
   telefono: string="";
+  idDuenyo!: number;
 
   constructor(private router: Router,
     private registroDuenyo: PeticionesService,
@@ -63,7 +64,20 @@ export class RegistroDuenyoComponent{
   getDuenyorecintoId(usuario_id:string){
     this.registroDuenyo.getDuenyorecintoId(usuario_id).subscribe((data) => {
       sessionStorage.setItem('duenyo_recinto_id', data.duenyo_recinto_id)
+      const duenyoRecintoId = sessionStorage.getItem('duenyo_recinto_id')
+      this.idDuenyo = duenyoRecintoId ? parseInt(duenyoRecintoId, 10) : 0;
+      console.log(typeof(this.idDuenyo))
+      this.getRecintos(this.idDuenyo)
     })
-    this.router.navigate(['/home-duenyo'])
+  }
+
+  getRecintos(idDuenyo: number){
+    this.registroDuenyo.getRecintosByDuenyoRecintoId(idDuenyo).subscribe((data) => {
+      if (data == false){
+        this.router.navigate(['/creacion-recinto'])
+      } else{
+        this.router.navigate(['/home-duenyo'])
+      }
+    })
   }
 }

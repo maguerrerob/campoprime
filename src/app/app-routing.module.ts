@@ -12,6 +12,7 @@ import { CreacionRecintoComponent } from './creacion-recinto/creacion-recinto.co
 import { BusquedaAvanzadaComponent } from './busqueda-avanzada/busqueda-avanzada.component';
 import { ListaRecintosComponent } from './lista-recintos/lista-recintos.component';
 import { RecintoComponent } from './recinto/recinto.component';
+import { PagoComponent } from './pago/pago.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'busqueda-avanzada', component: BusquedaAvanzadaComponent },
   {path: 'lista-recintos', component: ListaRecintosComponent},
   {path: 'recinto/:id', component: RecintoComponent},
+  {path: 'pago/:id', component: PagoComponent}
 ];
 
 @NgModule({

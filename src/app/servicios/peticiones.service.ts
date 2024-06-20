@@ -15,6 +15,9 @@ const baseUrl = "http://127.0.0.1:8000/api/v1/"
 })
 
 export class PeticionesService {
+  private recinto: any[] = [];
+  queryBusquedaRecintos: { [key: string]: any } = {};
+
   private url_crear_token =  'http://127.0.0.1:8000/oauth2/token/';
   private url_obtener_user = baseUrl + 'usuario/token/';
   private url_registrar_user = baseUrl + 'registrar/usuario/';
@@ -23,6 +26,10 @@ export class PeticionesService {
   private url_getDuenyorecinto_Id = baseUrl + 'getDuenyorecintoId/';
   private url_consultarReservasDia = baseUrl + 'reservas/'
   private url_horarioRecinto = baseUrl + 'horario/recinto/';
+  private url_buscarRecintos = baseUrl + 'recinto/buscar/'
+  private url_obtenerRecintoAPI = baseUrl + 'obtener_recinto/'
+  private url_obtenerClienteId = baseUrl + 'obtener/cliente/';
+  private url_crearReserva = baseUrl + 'crear_reserva/'
 
   constructor(private http: HttpClient,
     private oauthService: OAuthService
@@ -41,8 +48,8 @@ export class PeticionesService {
     })
   }
 
-  getRecintosByDuenyoRecintoId(DuenyoRecintoId: number, token: string): Observable<any> {
-    const headers = { 'Authorization': `Bearer ${token}` };
+  getRecintosByDuenyoRecintoId(DuenyoRecintoId: number): Observable<any> {
+    const headers = this.getHeaders();
     return this.http.get(`${this.url_recintos_by_duenyo}${DuenyoRecintoId}/recintos/`, { headers });
   }
 
@@ -143,15 +150,15 @@ export class PeticionesService {
     );
   }
 
-  getrecintos(): Observable<any> {
-    const headers = this.getHeaders();
-    return this.http.get<any>(`http://127.0.0.1:8000/api/v1/recinto/lista`, { headers })
-      .pipe(
-        catchError(error => {
-          throw error;
-        })
-      );
-  }
+  // getrecintos(): Observable<any> {
+  //   const headers = this.getHeaders();
+  //   return this.http.get<any>(`http://127.0.0.1:8000/api/v1/recinto/lista`, { headers })
+  //     .pipe(
+  //       catchError(error => {
+  //         throw error;
+  //       })
+  //     );
+  // }
 
   obtenerReservas(recintoId: number, dia: string): Observable<any> {
     const headers = this.getHeaders();
@@ -166,5 +173,77 @@ export class PeticionesService {
         throw error;
       })
     );
+  }
+
+  buscarRecintos(query: string): Observable<any> {
+    const headers = this.getHeaders();
+    const params = { query: query };
+    return this.http.get<any>(this.url_buscarRecintos, { headers, params })
+      .pipe(
+        catchError(error => {
+          throw error;
+        })
+      );
+  }
+
+  setRecintos(data: any[], query: string): void {
+    this.queryBusquedaRecintos['recintos'] = data
+    this.queryBusquedaRecintos['query'] = query
+  }
+
+  getRecintos(): any {
+    console.log(this.queryBusquedaRecintos);
+    
+    return this.queryBusquedaRecintos;
+  }
+
+  setRecinto(data: any[]): void{    
+    this.recinto = data
+  }
+
+  // setRecinto2(id: any): void{
+  //   this.recinto = id
+  // }
+
+  delRecinto(): void{
+    this.recinto = []
+  }
+
+  getRecinto(): any {
+    if (Object.keys(this.recinto).length === 0) {
+      console.log('El objeto está vacío');
+    } else {
+      return this.recinto
+    }
+  }
+
+  obtenerRecintoAPI(id: any){
+    const headers = this.getHeaders();
+    return this.http.get<any>(`${this.url_obtenerRecintoAPI}`+`${id}`, { headers })
+      .pipe(
+        catchError(error => {
+          throw error;
+        })
+      );
+  }
+
+  getClienteId(usuario_id: any){
+    const headers = this.getHeaders();
+    return this.http.get<any>(`${this.url_obtenerClienteId}`+`${usuario_id}`, { headers })
+      .pipe(
+        catchError(error => {
+          throw error;
+        })
+      );
+  }
+
+  crearReserva(reserva: any): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.post<any>(this.url_crearReserva, reserva, { headers })
+      .pipe(
+        catchError(error => {
+          throw error;
+        })
+      );
   }
 }

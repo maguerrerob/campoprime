@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
   styleUrl: './home-duenyo.component.scss'
 })
 export class HomeDuenyoComponent implements OnInit {
-  idDuenyo!: number;
+  idDuenyo!: any;
+  idUser!: number;
   recintos: any[] = [];
-  token!: any
 
   constructor(
     private peticionesservice: PeticionesService,
@@ -18,15 +18,17 @@ export class HomeDuenyoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.token = sessionStorage.getItem('token')
-    this.peticionesservice.getUserLogged(sessionStorage.getItem('token')).subscribe((data) => {
-      this.idDuenyo = data.id
-      this.getRecintos(this.idDuenyo, this.token)
-    })
+    this.idDuenyo = sessionStorage.getItem('duenyo_recinto_id')
+    console.log(typeof(this.idDuenyo))
+    this.getRecintos(this.idDuenyo)
+    // this.peticionesservice.getUserLogged(sessionStorage.getItem('token')).subscribe((data) => {
+    //   this.idUser = data.id
+    //   this.getRecintos(sessionStorage.getItem('duenyo_recinto_id'), this.token)
+    // })
   }
 
-  getRecintos(idDuenyo: number, token: string){
-    this.peticionesservice.getRecintosByDuenyoRecintoId(idDuenyo, token).subscribe((data) => {
+  getRecintos(idDuenyo: number){
+    this.peticionesservice.getRecintosByDuenyoRecintoId(idDuenyo).subscribe((data) => {
       if (data == false){
         this.router.navigate(['/creacion-recinto'])
       } else{

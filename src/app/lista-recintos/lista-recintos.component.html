@@ -1,1 +1,37 @@
-<p>lista-recintos works!</p>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<nav class="navbar">
+    <img src="/assets/img/logo.png" style="width: 100px;" alt="">
+    <form action="" class="row align-items-center form-footer bg-white p-3 col-5 col-md-7">
+        <div class="col-9">
+            <input type="text"
+                name="ciudad"
+                class="form-control"
+                placeholder="Ciudad / Nombre del recinto"
+                [(ngModel)]="query"
+            />
+        </div>
+        <div class="col-3">
+            <button class="btn btn-primary btn-custom" (click)="busqueda()">
+                <i class="fas fa-sign-out-alt"></i>Enviar
+            </button>
+        </div>
+    </form>
+    <button type="submit" (click)="logout()" class="btn btn-danger btn-md cerrarSesion ml-2">
+        <i class="fas fa-sign-out-alt"></i>Cerrar Sesión
+    </button>
+</nav>
+
+<h1>Recintos buscados por: {{ query }}</h1>
+
+<div class="row d-flex flex-wrap px-5 mt-4">
+    <div *ngFor="let recinto of recintos" class="col-md-4 p-3" (click)="accederRecinto(recinto)">
+        <div class="card rounded-custom clickable-card">
+            <div class="card-body">
+                <h5 class="card-title text-center">{{ recinto.nombre }}</h5>
+                <hr>
+                <p class="card-text text-center">{{ recinto.ciudad }}</p>
+            </div>
+        </div>
+    </div>
+</div>

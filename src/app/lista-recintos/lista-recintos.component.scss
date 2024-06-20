@@ -1,0 +1,15 @@
+.rounded-custom {
+    border-radius: 15px; /* Ajusta este valor según el radio de redondeo que desees */
+    border: 1px solid #ddd; /* Agrega un borde opcional */
+    padding: 15px; /* Añade un espacio interno opcional */
+    background-color: #f8f9fa; /* Color de fondo opcional */
+}
+
+.clickable-card {
+    cursor: pointer;
+    transition: transform 0.2s; /* Para agregar una pequeña animación al hacer hover */
+}
+  
+.clickable-card:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño para dar una sensación de interacción */
+}

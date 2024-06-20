@@ -57,6 +57,7 @@ export class CreacionRecintoComponent {
         console.log("hecho");
         sessionStorage.setItem('idRecinto', response.id);
         sessionStorage.setItem('nombreRecinto', response.nombre)
+        this.peticionesService.setRecinto(response)
         this.router.navigate([`/recinto/${response.id}`]);
       }, error => {
         console.log(error);

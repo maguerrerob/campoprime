@@ -55,7 +55,14 @@ export class RegistroClienteComponent {
       sessionStorage.setItem('first_name', data.first_name);
       sessionStorage.setItem('last_name', data.last_name);
       sessionStorage.setItem('email', data.email);
-      this.router.navigate(['/home'])
+      this.getClienteId(data.id)
     })
+  }
+
+  getClienteId(usuario_id:string){
+    this.registroCliente.getClienteId(usuario_id).subscribe((data) => {
+      sessionStorage.setItem('idCliente', data.id)
+    })
+    this.router.navigate(['/home'])
   }
 }

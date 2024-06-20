@@ -9,14 +9,16 @@
 
 
 
-<div class="container">
+<div class="content">
     <h1 class="my-4">Cuadrante de Reservas {{ nombreRecinto }}</h1>
-    <div id="schedule" class="d-flex flex-wrap">
-        <div *ngFor="let hour of getHoursRange(hora_apertura_recinto, hora_cierre_recinto)" 
-             class="hour-slot" 
-             [ngClass]="{'reserved': isReserved(hour), 'available': !isReserved(hour)}"
-             (click)="!isReserved(hour) && reservarHora(hour)">
-            {{ hour }}:00 - {{ hour + 1 }}:00
-        </div>
+    <label for="fecha" class="mr-2">Escoja un día</label>
+    <input type="date" id="fecha" [(ngModel)]="fechaReserva" (ngModelChange)="mostrar()">
+    <div id="schedule" class="d-flex flex-wrap col-12 col-md-6">
+      <div *ngFor="let hour of getHoursRange(hora_apertura_recinto, hora_cierre_recinto)" 
+              class="hour-slot" 
+              [ngClass]="{'reserved': isReserved(hour), 'available': !isReserved(hour)}"
+              (click)="!isReserved(hour) && reservarHora(hour)">
+          {{ hour }} - {{ hour + 1 }}
+      </div>
     </div>
 </div>

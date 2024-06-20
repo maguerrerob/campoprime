@@ -36,17 +36,24 @@ export class LoginComponent {
   iniciarSesion(){
     this.loginService.getUserLogged(sessionStorage.getItem('token')).subscribe((data) => {
       sessionStorage.setItem('id', data.id);
-      this.getDuenyorecintoId(data.id)
       sessionStorage.setItem('username', data.username);
       sessionStorage.setItem('first_name', data.first_name);
       sessionStorage.setItem('last_name', data.last_name);
       sessionStorage.setItem('email', data.email);
       if (data.rol == 2){
-        this.router.navigate(['/home'])
+        this.getClienteId(data.id)
+        
       } else if (data.rol == 3){
-        this.router.navigate(['/home-duenyo'])
+        this.getDuenyorecintoId(data.id)
       }
     })
+  }
+
+  getClienteId(usuario_id:string){
+    this.loginService.getClienteId(usuario_id).subscribe((data) => {
+      sessionStorage.setItem('idCliente', data.id)
+    })
+    this.router.navigate(['/home'])
   }
 
   getDuenyorecintoId(usuario_id:string){

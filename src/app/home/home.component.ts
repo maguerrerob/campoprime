@@ -8,8 +8,9 @@ import { Router } from '@angular/router';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent{
+  recintos: any[] = [];
+  query: string = '';
 
-  dia!: any;
   constructor(
     private HomeService: PeticionesService,
     private router: Router
@@ -21,16 +22,13 @@ export class HomeComponent{
   }
 
 
-  busqueda(){
-    // Lógica búsqueda recintos
-    console.log(this.dia);
-    console.log(typeof(this.dia));
-    
-    
-    // this.router.navigate(['/busqueda-avanzada'])
+  busqueda(): void {
+    this.HomeService.buscarRecintos(this.query).subscribe((data: any) => {
+      this.HomeService.setRecintos(data, this.query);
+      this.router.navigate(['/lista-recintos']);
+    });
   }
   
-
   // Google
   showDataGoogle(){
     const infoUser= JSON.stringify(this.HomeService.getProfileGoogle());

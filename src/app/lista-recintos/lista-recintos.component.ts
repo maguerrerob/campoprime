@@ -7,9 +7,10 @@ import { Router } from '@angular/router';
   templateUrl: './lista-recintos.component.html',
   styleUrl: './lista-recintos.component.scss'
 })
-export class ListaRecintosComponent {
-  
-  recintos!: any;
+export class ListaRecintosComponent implements OnInit {
+  data: { [key: string]: any } = {};
+  query: string = '';
+  recintos: any[] = []
 
   constructor(
     private peticionesService: PeticionesService,
@@ -17,21 +18,44 @@ export class ListaRecintosComponent {
   ) {}
 
   ngOnInit(): void {
-    this.listarecintos();
+    this.data = this.peticionesService.getRecintos();
+    if (Object.keys(this.data).length > 0) {
+      console.log('Recintos recibidos:', this.data);
+      this.query = this.data['query']
+      this.recintos = this.data['recintos']
+    } else {
+      console.error('No se recibieron datos de recintos');
+    }
   }
 
-  listarecintos(): void {
-    this.peticionesService.getrecintos().subscribe((data: any) => {
-      console.log(data);
-      
-        this.recintos = data;
-        console.log('Recintos obtenidos:', this.recintos);
-      },
-      error => {
-        console.error('Error al obtener recintos:', error);
+  busqueda(): void{
+    this.peticionesService.buscarRecintos(this.query).subscribe((data: any) => {
+      this.peticionesService.setRecintos(data, this.query);
+      this.data = this.peticionesService.getRecintos();
+      if (Object.keys(this.data).length > 0) {
+        console.log('Recintos recibidos:', this.data);
+        this.query = this.data['query']
+        this.recintos = this.data['recintos']
+      } else {
+        console.error('No se recibieron datos de recintos');
       }
-    );
+    });
+
+  }
+
+  accederRecinto(recinto: any): void{
+    this.peticionesService.setRecinto(recinto);
+    this.router.navigate(['recinto/', recinto.id]);
+  }
+
+  logout(){
+    sessionStorage.clear()
+    this.peticionesService.delRecinto()
+    this.router.navigate(['/'])
+  }
+
+  logOutGoogle(){
+    this.peticionesService.logoutGoogle();
   }
 
 }
-
